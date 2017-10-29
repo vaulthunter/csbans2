@@ -1,33 +1,6 @@
 <?php
 
-$config = [
-    'id' => 'basic-console',
-    'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+return [
+    'id' => 'csbans2-console',
     'controllerNamespace' => 'app\commands',
-    'components' => [
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
-        ],
-        'log' => [
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
-        ],
-        'db' => null,
-    ],
-    'params' => [],
 ];
-
-if (YII_ENV_DEV) {
-    // configuration adjustments for 'dev' environment
-    $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = [
-        'class' => 'yii\gii\Module',
-    ];
-}
-
-return $config;

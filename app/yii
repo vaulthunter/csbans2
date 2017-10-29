@@ -14,7 +14,10 @@ define('YII_ENV', 'dev');
 require(__DIR__ . '/vendor/autoload.php');
 require(__DIR__ . '/vendor/yiisoft/yii2/Yii.php');
 
-$config = require(__DIR__ . '/config/app/console.php');
+$config = \yii\helpers\ArrayHelper::merge(
+    include __DIR__ . '/config/app/main.php',
+    include __DIR__ . '/config/app/console.php'
+);
 if(file_exists(__DIR__ . '/config/app/console.local.php')) {
     $config = \yii\helpers\ArrayHelper::merge($config, include __DIR__ . '/config/app/console.local.php');
 }

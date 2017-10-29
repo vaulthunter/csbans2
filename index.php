@@ -8,14 +8,9 @@ if(getenv('csbans2-dev')) {
 require(__DIR__ . '/app/vendor/autoload.php');
 require(__DIR__ . '/app/vendor/yiisoft/yii2/Yii.php');
 
-$config = require(__DIR__ . '/app/config/app/main.php');
-if(file_exists(__DIR__ . '/app/config/app/main.local.php')) {
-    $config = \yii\helpers\ArrayHelper::merge($config, include __DIR__ . '/app/config/app/main.local.php');
-}
-
 $config = \yii\helpers\ArrayHelper::merge(
-    $config,
-    require(__DIR__ . '/app/config/app/web.php')
+    include __DIR__ . '/app/config/app/main.php',
+    include __DIR__ . '/app/config/app/web.php'
 );
 
 if(file_exists(__DIR__ . '/app/config/app/web.local.php')) {

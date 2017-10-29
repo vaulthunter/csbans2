@@ -3,7 +3,7 @@
 yii::setAlias('rootPath', dirname(dirname(dirname(__DIR__))));
 Yii::setAlias('themes', '@rootPath/themes');
 
-return [
+$config = [
     'id' => 'cb2-main',
     'basePath' => dirname(dirname(__DIR__)),
     'bootstrap' => ['log'],
@@ -31,14 +31,11 @@ return [
             ],
         ],
         'db' => null
-//        'db' => [
-//            'class' => 'yii\db\Connection',
-//            'dsn' => 'mysql:host=localhost;dbname=csbans2',
-//            'username' => 'root',
-//            'password' => '',
-//            'charset' => 'utf8mb4',
-//            'enableSchemaCache' => true
-//        ]
     ],
     'params' => []
 ];
+
+if(file_exists( __DIR__ . DIRECTORY_SEPARATOR . 'main.local.php')) {
+    $config = \yii\helpers\ArrayHelper::merge($config, include __DIR__ . DIRECTORY_SEPARATOR . 'main.local.php');
+}
+return $config;
