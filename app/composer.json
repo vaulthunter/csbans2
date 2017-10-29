@@ -1,0 +1,33 @@
+{
+    "name": "craft-soft/csbans2",
+    "description": "Bans and admins management system for a game servers on a Half-Life 1 engine",
+    "keywords": ["csbans", "counter strike", "halflife", "ban system"],
+    "homepage": "http://craft-soft.ru/csbans/",
+    "type": "project",
+    "license": "GPL-3.0",
+    "support": {
+        "issues": "http://craft-soft.ru/tracker/index.html",
+        "email": "info@craft-soft.ru"
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "~2.0.5",
+        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-swiftmailer": "~2.0.0"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "~2.0.0",
+        "yiisoft/yii2-gii": "~2.0.0",
+        "yiisoft/yii2-faker": "~2.0.0"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "config": {
+        "process-timeout": 1800
+    }
+}
