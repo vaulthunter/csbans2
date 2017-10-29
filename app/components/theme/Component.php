@@ -15,8 +15,6 @@ class Component extends \yii\base\Component implements \yii\base\BootstrapInterf
 {
     const THEME_COOKIE_NAME = 'csb2_theme';
 
-    const EVENT_THEME_CHANGED = 'csb2_theme_changed';
-
     public $defaultTheme = 'default';
 
     private $_current;
@@ -98,8 +96,8 @@ class Component extends \yii\base\Component implements \yii\base\BootstrapInterf
         $this->_name = $name;
         $this->setUserTheme($name);
 
-        $this->trigger(self::EVENT_THEME_CHANGED, new ThemeEvent([
-            'themeName' => $this->getName()
+        $this->trigger(ThemeEvent::EVENT_THEME_CHANGED, new ThemeEvent([
+            'theme' => $this->getCurrent()
         ]));
     }
 
