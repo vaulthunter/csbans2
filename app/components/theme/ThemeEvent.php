@@ -1,6 +1,6 @@
 <?php
 
-namespace app\events;
+namespace app\components\theme;
 
 class ThemeEvent extends \yii\base\Event
 {

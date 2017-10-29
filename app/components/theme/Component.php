@@ -98,7 +98,7 @@ class Component extends \yii\base\Component implements \yii\base\BootstrapInterf
         $this->_name = $name;
         $this->setUserTheme($name);
 
-        $this->trigger(self::EVENT_THEME_CHANGED, new \app\events\ThemeEvent([
+        $this->trigger(self::EVENT_THEME_CHANGED, new ThemeEvent([
             'themeName' => $this->getName()
         ]));
     }
