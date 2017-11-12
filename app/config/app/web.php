@@ -3,7 +3,6 @@
 return [
     'id' => 'csbans2-web',
     'bootstrap' => [
-        //'app\config\app\bootstrap\CheckInstall',
         'theme'
     ],
     'components' => [

@@ -7,7 +7,7 @@ use yii\db\Migration;
  */
 class m171029_092158_create_users_table extends Migration
 {
-    private $tableName = '{{%app_user}}';
+    private $tableName = 'csbans_user';
 
     /**
      * @inheritdoc

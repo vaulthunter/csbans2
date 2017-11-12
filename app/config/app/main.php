@@ -1,12 +1,15 @@
 <?php
 
-yii::setAlias('rootPath', dirname(dirname(dirname(__DIR__))));
-Yii::setAlias('themes', '@rootPath/themes');
+\Yii::setAlias('rootPath', dirname(dirname(dirname(__DIR__))));
+\Yii::setAlias('themes', '@rootPath/themes');
 
 $config = [
     'id' => 'cb2-main',
     'basePath' => dirname(dirname(__DIR__)),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        'app\config\app\bootstrap\ConfigureFromConfigFile',
+    ],
     'language' => 'ru-RU',
     'sourceLanguage' => 'ru-RU',
     'timeZone' => 'Europe/Moscow',
@@ -27,6 +30,20 @@ $config = [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
+                ],
+            ],
+        ],
+        'i18n' => [
+            'translations' => [
+                'yii*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'forceTranslation' => true,
+                    'basePath' => '@yii/messages'
+                ],
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'forceTranslation' => true,
+                    'basePath' => '@app/messages'
                 ],
             ],
         ],
