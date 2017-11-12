@@ -14,7 +14,7 @@ return [
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => 'main/default/error',
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
