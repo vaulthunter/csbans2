@@ -4,6 +4,8 @@ namespace app\components\theme;
 
 use Yii;
 use yii\base\InvalidConfigException;
+use yii\helpers\FileHelper;
+use yii\web\View;
 
 /**
  * Class Component
@@ -54,10 +56,11 @@ class Component extends \yii\base\Component implements \yii\base\BootstrapInterf
     public function configureTheme()
     {
         $themePath = $this->getBasePath();
-        Yii::setAlias('theme', $themePath);
+        Yii::setAlias('@theme', $themePath);
         $view = $this->app->getView();
         if($view instanceof \yii\web\View) {
             $this->getCurrent();
+            $this->setAssets($view);
             $view->theme = Yii::createObject([
                 'class' => 'yii\base\Theme',
                 'pathMap' => [
@@ -138,5 +141,20 @@ class Component extends \yii\base\Component implements \yii\base\BootstrapInterf
             'value' => $name,
             'expire' => time() + (86400 * 30)
         ]));
+    }
+
+    private function setAssets(View $view)
+    {
+        $currentTheme = $this->getCurrent();
+        $files = FileHelper::findFiles($currentTheme->getFullPath(), [
+            'only' => ['*.css', '*.js']
+        ]);
+        $bundle = Asset::register($view);
+        foreach($files as $file) {
+            $pathinfo = pathinfo($file);
+            if(!empty($pathinfo['extension'])) {
+                $bundle->{$pathinfo['extension']}[] = basename($pathinfo['dirname']) . "/{$pathinfo['basename']}";
+            }
+        }
     }
 }

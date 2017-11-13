@@ -38,6 +38,7 @@ class Factory
      * @param $themeName
      * @param array $themeData
      * @return Theme
+     * @throws InvalidConfigException
      */
     public function buildTheme($themeName, array $themeData)
     {
