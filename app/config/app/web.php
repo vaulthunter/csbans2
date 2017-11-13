@@ -47,10 +47,16 @@ return [
                 'twig' => [
                     'class' => 'yii\twig\ViewRenderer',
                     'cachePath' => '@runtime/Twig/cache',
+                    'uses' => [
+                        'yii\bootstrap'
+                    ],
                     'options' => [
                         'auto_reload' => true,
                     ],
-                    'globals' => ['html' => '\yii\helpers\Html'],
+                    'globals' => [
+                        'html' => '\yii\helpers\Html',
+                        'url' => ['class' => '\yii\helpers\Url']
+                    ],
                     'filters' => [
                         'jsonEncode' => '\yii\helpers\Json::htmlEncode',
                         'htmlEncode' => '\yii\helpers\Html::encode',
