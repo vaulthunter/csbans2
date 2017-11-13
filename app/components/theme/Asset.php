@@ -6,7 +6,7 @@ use yii\web\AssetBundle;
 
 class Asset extends AssetBundle
 {
-    public $sourcePath = "@theme/assets/dist";
+    public $sourcePath = "@theme/assets";
 
     public $depends = [
         'yii\web\JqueryAsset',
