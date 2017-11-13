@@ -3,8 +3,10 @@
 return [
     'id' => 'csbans2-web',
     'bootstrap' => [
-        'theme'
+        'theme',
+        'csbans\eventsDispatchers\ViewEventsDispatcher'
     ],
+    'layout' => 'main.twig',
     'components' => [
         'request' => [
             'cookieValidationKey' => 'sadfsdfsdf',
@@ -32,6 +34,7 @@ return [
             'defaultTheme' => 'default'
         ],
         'view' => [
+            'defaultExtension' => 'twig',
             'theme' => [
                 'pathMap' => [
                     '@app/modules' => '@app/views',
@@ -48,6 +51,11 @@ return [
                         'auto_reload' => true,
                     ],
                     'globals' => ['html' => '\yii\helpers\Html'],
+                    'filters' => [
+                        'jsonEncode' => '\yii\helpers\Json::htmlEncode',
+                        'htmlEncode' => '\yii\helpers\Html::encode',
+                        'htmlPurify' => '\yii\helpers\HtmlPurifier::process'
+                    ]
                 ],
             ],
         ],
