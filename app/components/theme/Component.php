@@ -5,6 +5,7 @@ namespace app\components\theme;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\FileHelper;
+use yii\web\AssetBundle;
 use yii\web\View;
 
 /**
@@ -129,6 +130,11 @@ class Component extends \yii\base\Component implements \yii\base\BootstrapInterf
         return in_array($name, $this->getThemes());
     }
 
+    public function getBaseUrl()
+    {
+        return $this->_bundle->baseUrl;
+    }
+
     private function getUserTheme()
     {
         return Yii::$app->getRequest()->getCookies()->getValue(self::THEME_COOKIE_NAME);
@@ -143,17 +149,21 @@ class Component extends \yii\base\Component implements \yii\base\BootstrapInterf
         ]));
     }
 
+    /**
+     * @var AssetBundle
+     */
+    private $_bundle;
     private function setAssets(View $view)
     {
         $currentTheme = $this->getCurrent();
         $files = FileHelper::findFiles($currentTheme->getFullPath(), [
             'only' => ['*.css', '*.js']
         ]);
-        $bundle = Asset::register($view);
+        $this->_bundle = Asset::register($view);
         foreach($files as $file) {
             $pathinfo = pathinfo($file);
             if(!empty($pathinfo['extension'])) {
-                $bundle->{$pathinfo['extension']}[] = basename($pathinfo['dirname']) . "/{$pathinfo['basename']}";
+                $this->_bundle->{$pathinfo['extension']}[] = basename($pathinfo['dirname']) . "/{$pathinfo['basename']}";
             }
         }
     }
