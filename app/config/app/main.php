@@ -1,21 +1,22 @@
 <?php
 
-\Yii::setAlias('rootPath', dirname(dirname(dirname(__DIR__))));
-\Yii::setAlias('themes', '@rootPath/themes');
-
 $config = [
     'id' => 'cb2-main',
     'basePath' => dirname(dirname(__DIR__)),
     'bootstrap' => [
         'log',
-        'app\config\app\bootstrap\ConfigureFromConfigFile',
+        'csbans\config\app\bootstrap\ConfigureFromConfigFile',
     ],
     'language' => 'ru-RU',
     'sourceLanguage' => 'ru-RU',
     'timeZone' => 'Europe/Moscow',
+    'name' => 'CS:Bans',
+    'version' => '2.0.0-rc-alfa',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
+        '@themes' => '@app/themes',
+        '@csbans' => '@app'
     ],
     'components' => [
         'cache' => [
@@ -43,7 +44,7 @@ $config = [
                 'app*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'forceTranslation' => true,
-                    'basePath' => '@app/messages'
+                    'basePath' => '@csbans/messages'
                 ],
             ],
         ],

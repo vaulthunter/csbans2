@@ -1,6 +1,6 @@
 <?php
 
-namespace app\config\app\bootstrap\exceptions;
+namespace csbans\config\app\bootstrap\exceptions;
 
 class InstallRequiredException extends \yii\base\Exception
 {

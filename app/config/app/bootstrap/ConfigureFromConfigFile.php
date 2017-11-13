@@ -1,8 +1,8 @@
 <?php
 
-namespace app\config\app\bootstrap;
+namespace csbans\config\app\bootstrap;
 
-use app\config\app\bootstrap\exceptions\InstallRequiredException;
+use csbans\config\app\bootstrap\exceptions\InstallRequiredException;
 use Yii;
 use yii\base\ErrorException;
 use yii\base\InvalidConfigException;
