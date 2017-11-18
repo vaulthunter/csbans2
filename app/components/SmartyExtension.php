@@ -116,6 +116,12 @@ class SmartyExtension extends Extension
         $category = $params['category'];
         $message = str_replace(['[[', ']]'], ['{', '}'], $params['message']);
         unset($params['category'], $params['message']);
+        if($category !== 'app') {
+            $moduleClass = get_class(Yii::$app->controller->module);
+            if(method_exists($moduleClass, 't')) {
+                return $moduleClass::t($category, $message, $params);
+            }
+        }
         return \Yii::t($category, $message, $params);
     }
 }

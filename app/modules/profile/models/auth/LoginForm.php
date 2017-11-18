@@ -28,8 +28,8 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            ['login', 'required', 'message' => Module::t('auth', 'LOGIN_LOGIN_REQUIRED_ERROR')],
-            ['password', 'required', 'message' => Module::t('auth', 'LOGIN_PASSWORD_REQUIRED_ERROR')],
+            ['login', 'required', 'message' => Module::t('auth/login', 'LOGIN_LOGIN_REQUIRED_ERROR')],
+            ['password', 'required', 'message' => Module::t('auth/login', 'LOGIN_PASSWORD_REQUIRED_ERROR')],
             ['password', 'validatePassword'],
             ['remember', 'boolean']
         ];
@@ -41,7 +41,7 @@ class LoginForm extends Model
             $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, Module::t('auth', 'LOGIN_WRONG_USER_OR_PASSWORD'));
+                $this->addError($attribute, Module::t('auth/login', 'LOGIN_WRONG_USER_OR_PASSWORD'));
             }
         }
     }

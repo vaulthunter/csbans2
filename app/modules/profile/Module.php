@@ -44,15 +44,18 @@ class Module extends \yii\base\Module
 
     public function registerTranslations()
     {
-        Yii::$app->i18n->translations['modules/users/*'] = [
-            'class'          => 'yii\i18n\PhpMessageSource',
-            'sourceLanguage' => 'en-US',
+        Yii::$app->i18n->translations['profile/*'] = [
+            'class'          => \yii\i18n\PhpMessageSource::class,
             'basePath'       => '@modules/profile/messages',
+            'forceTranslation' => true,
+            'fileMap' => [
+                'profile/auth/login' => 'auth/login.php'
+            ],
         ];
     }
 
     public static function t($category, $message, $params = [], $language = null)
     {
-        return Yii::t('modules/users/' . $category, $message, $params, $language);
+        return Yii::t('profile/' . $category, $message, $params, $language);
     }
 }
