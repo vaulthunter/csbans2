@@ -7,32 +7,28 @@
         <meta charset="{{ app.charset }}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <meta name="description" content="">
-        <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
-
         <title>{{ this.title|htmlEncode }}</title>
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
         {{ html.csrfMetaTags | raw }}
         {{ void(this.head) }}
     </head>
     <body>
         {{ void(this.beginBody()) }}
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a href="#main" class="navbar-brand visible-xs">CS BANS</a>
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></button>
-                </div>
-                <div class="navbar-collapse collapse opensans">
-                    {{ menu_widget({
-                        activeCssClass: 'active-url',
-                        options: {
-                            class: 'nav navbar-nav',
-                            id: 'navbar-nav'
-                        },
-                        items: [
+        <div id="wrap">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a href="#main" class="navbar-brand visible-xs">{{ app.name }}</a>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></button>
+                    </div>
+                    <div class="navbar-collapse collapse opensans">
+                        {{ menu_widget({
+                            activeCssClass: 'active-url',
+                            options: {
+                                class: 'nav navbar-nav',
+                                id: 'navbar-nav'
+                            },
+                            items: [
                             {
                                 label: 'ГЛАВНАЯ',
                                 url: ['/main/default/index']
@@ -49,39 +45,40 @@
                                 label: 'СЕРВЕРЫ',
                                 url: ['/main/servers/index']
                             }
-                        ]
-                    }) }}
-                    <div class="pull-right navbar-buttons btn-padding">
-                        <button type="button" class="btn btn-csbans" data-popup-toggle="#login-modal">Войти</button>
-                    </div>
-                    <div class="pull-right navbar-buttons btn-padding">
-                        <a href="#enter" class="btn btn-csbans">Админцентр</a>
+                            ]
+                        }) }}
+                        <div class="pull-right navbar-buttons btn-padding">
+                            <button type="button" class="btn btn-csbans" data-popup-toggle="#login-modal">Войти</button>
+                        </div>
+                        <div class="pull-right navbar-buttons btn-padding">
+                            <a href="#enter" class="btn btn-csbans">Админцентр</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
-        <header>
+            </nav>
+            <header>
+                <div class="container">
+                    <div class="row">
+                        <div class="logo"><img src="{{ app.theme.baseUrl }}/img/logo.png" /></div>
+                    </div>
+                </div>
+            </header>
             <div class="container">
-                <div class="row">
-                    <div class="logo"><img src="{{ app.theme.baseUrl }}/img/logo.png" /></div>
-                </div>
-            </div>
-        </header>
-        <div class="container">
-            <div class="content-pathway clearfix">
-                <div class="pull-left">
-                    <div class="pathway">
-                        <a href="">Главная</a> <span style="color: #5ba8e9;">»</span> <a href="">Баны</a>
+                <div class="content-pathway clearfix">
+                    <div class="pull-left">
+                        <div class="pathway">
+                            <a href="">Главная</a> <span style="color: #5ba8e9;">»</span> <a href="">Баны</a>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <a href="#main-site"><span class="soc-icon home"></span></a>
+                        <a href="#vk"><span class="soc-icon vk"></span></a>
+                        <a href="#steam"><span class="soc-icon steam"></span></a>
                     </div>
                 </div>
-                <div class="pull-right">
-                    <a href="#main-site"><span class="soc-icon home"></span></a>
-                    <a href="#vk"><span class="soc-icon vk"></span></a>
-                    <a href="#steam"><span class="soc-icon steam"></span></a>
+                <div id="content">
+                    {{ content | raw }}
                 </div>
-            </div>
-            <div id="content">
-                {{ content | raw }}
             </div>
         </div>
         <footer class="footer">
