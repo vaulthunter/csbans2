@@ -160,6 +160,7 @@ class Component extends \yii\base\Component implements \yii\base\BootstrapInterf
             'only' => ['*.css', '*.js']
         ]);
         $this->_bundle = Asset::register($view);
+        sort($files, SORT_STRING);
         foreach($files as $file) {
             $pathinfo = pathinfo($file);
             if(!empty($pathinfo['extension'])) {
