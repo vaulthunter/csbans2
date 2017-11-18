@@ -13,10 +13,11 @@ $config = [
     'name' => 'CS:Bans',
     'version' => '2.0.0-rc-alfa',
     'aliases' => [
+        '@csbans' => '@app',
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
-        '@themes' => '@app/themes',
-        '@csbans' => '@app'
+        '@themes' => '@csbans/themes',
+        '@modules' => '@csbans/modules'
     ],
     'components' => [
         'cache' => [
@@ -52,6 +53,14 @@ $config = [
     ],
     'params' => []
 ];
+
+$ds = DIRECTORY_SEPARATOR;
+foreach(glob(realpath(__DIR__ . "{$ds}..{$ds}..{$ds}modules") . "{$ds}*") as $moduleDir) {
+    $moduleName = basename($moduleDir);
+    $config['modules'][$moduleName] = [
+        'class' => "modules\\".$moduleName."\Module"
+    ];
+}
 
 if(file_exists( __DIR__ . DIRECTORY_SEPARATOR . 'main.local.php')) {
     $config = \yii\helpers\ArrayHelper::merge($config, include __DIR__ . DIRECTORY_SEPARATOR . 'main.local.php');

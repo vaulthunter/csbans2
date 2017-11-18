@@ -13,8 +13,4 @@ $config = \yii\helpers\ArrayHelper::merge(
     include __DIR__ . '/app/config/app/web.php'
 );
 
-if(file_exists(__DIR__ . '/app/config/app/web.local.php')) {
-    $config = \yii\helpers\ArrayHelper::merge($config, include __DIR__ . '/app/config/app/web.local.php');
-}
-
 (new yii\web\Application($config))->run();

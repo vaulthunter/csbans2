@@ -1,6 +1,6 @@
 <?php
 
-return [
+$config = [
     'id' => 'csbans2-web',
     'bootstrap' => [
         'theme',
@@ -67,9 +67,10 @@ return [
             ],
         ],
     ],
-    'modules' => [
-        'main' => [
-            'class' => 'app\modules\main\Module',
-        ],
-    ],
 ];
+
+if(file_exists(__DIR__ . DIRECTORY_SEPARATOR . 'web.local.php')) {
+    $config = \yii\helpers\ArrayHelper::merge($config, include __DIR__ . DIRECTORY_SEPARATOR . 'web.local.php');
+}
+
+return $config;
