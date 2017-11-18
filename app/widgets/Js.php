@@ -19,7 +19,7 @@ class Js extends Widget
     public function run()
     {
         $js = ob_get_clean();
-        if(preg_match("/^\\s*\\<script\\>(.*)\\<\\/script\\>\\s*$/s", $js, $matches)){
+        if(preg_match('/^\s*<script[^>]*>(.*)<\/script>\s*$/s', $js, $matches)){
             $js = $matches[1];
         }
         $this->getView()->registerJs($js, $this->position, $this->key);

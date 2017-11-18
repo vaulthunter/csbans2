@@ -18,7 +18,7 @@ class Css extends Widget
     public function run()
     {
         $css = ob_get_clean();
-        if(preg_match("/^\\s*\\<style\\>(.*)\\<\\/style\\>\\s*$/s", $css, $matches)){
+        if(preg_match('/^\s*<style[^>]*>(.*)<\/style>\s*$/s', $css, $matches)){
             $css = $matches[1];
         }
         $this->getView()->registerCss($css, $this->options, $this->key);
