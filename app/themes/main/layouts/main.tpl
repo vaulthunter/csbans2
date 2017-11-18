@@ -1,4 +1,5 @@
 {use class='yii\widgets\Menu' type='function'}
+{use class="yii\widgets\Breadcrumbs" type="function"}
 {rmrevin\yii\fontawesome\AssetBundle::register($this)|void}
 {$this->beginPage()|void}
 <!DOCTYPE html>
@@ -40,12 +41,20 @@
                         'url' => ['/main/servers/index']
                     ]
                 ]}
-                <div class="pull-right navbar-buttons btn-padding">
-                    <button type="button" class="btn btn-csbans" data-popup-toggle="#login-modal">Войти</button>
-                </div>
-                <div class="pull-right navbar-buttons btn-padding">
-                    <a href="#enter" class="btn btn-csbans">Админцентр</a>
-                </div>
+                {if $app->user->isGuest}
+                    <div class="pull-right navbar-buttons btn-padding">
+                        <button
+                            type="button"
+                            class="btn btn-csbans"
+                            data-toggle="modal"
+                            data-target="#login-widget-modal">{t category='layout' message='LAYOUT_LOGIN_BUTTON'}</button>
+                    </div>
+                {/if}
+                {if $app->user->isAdmin}
+                    <div class="pull-right navbar-buttons btn-padding">
+                        <a href="#enter" class="btn btn-csbans">{t category='layout' message='LAYOUT_ADMIN_BUTTON'}</a>
+                    </div>
+                {/if}
             </div>
         </div>
     </nav>
@@ -59,9 +68,9 @@
     <div class="container">
         <div class="content-pathway clearfix">
             <div class="pull-left">
-                <div class="pathway">
-                    <a href="">Главная</a> <span style="color: #5ba8e9;">»</span> <a href="">Баны</a>
-                </div>
+                {if isset($this->params['breadcrumbs'])}
+                    {Breadcrumbs links=$this->params['breadcrumbs'] options=['class' => 'pathway']}
+                {/if}
             </div>
             <div class="pull-right">
                 <a href="#main-site"><span class="soc-icon home"></span></a>
@@ -102,21 +111,7 @@
         </div>
     </div>
 </footer>
-<div class="popup-modal" id="#login-modal">
-    <div class="popup__overlay"></div>
-    <h2>Добро пожаловать!</h2>
-    <p>Укажите свой логин и пароль, что бы продолжить</p>
-    <div class="popup-form__row">
-        <label for="popup-form_login">Логин</label>
-        <input type="text" id="popup-form_login" value="" />
-    </div>
-    <div class="popup-form__row">
-        <label for="popup-form_password">Пароль</label>
-        <input type="password" id="popup-form_password" value="" />
-    </div>
-    <input type="button" value="ВОЙТИ" />
-    <a href="#" class="popup__close">Закрыть окно</a>
-</div>
+{themes\main\widgets\LoginWidget::widget()}
 {$this->endBody()|void}
 </body>
 </html>{$this->endPage()|void}

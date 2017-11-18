@@ -35,6 +35,15 @@ class LoginForm extends Model
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'login' => Module::t('auth/login', 'LOGIN_LABEL_LOGIN'),
+            'password' => Module::t('auth/login', 'LOGIN_LABEL_PASSWORD'),
+            'remember' => Module::t('auth/login', 'LOGIN_LABEL_REMEMBER'),
+        ];
+    }
+
     public function validatePassword($attribute)
     {
         if (!$this->hasErrors()) {

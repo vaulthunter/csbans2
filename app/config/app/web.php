@@ -4,6 +4,7 @@ $config = [
     'id' => 'csbans2-web',
     'bootstrap' => [
         'theme',
+        'profile',
         'csbans\eventsDispatchers\ViewEventsDispatcher'
     ],
     'layout' => 'main.tpl',
@@ -12,7 +13,7 @@ $config = [
             'cookieValidationKey' => 'sadfsdfsdf',
         ],
         'user' => [
-            'class' => \yii\web\User::class,
+            'class' => \csbans\components\WebUser::class,
             'identityClass' => 'csbans\models\User',
             'enableAutoLogin' => true,
             'loginUrl' => ['/profile/auth/login']

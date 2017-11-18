@@ -17,6 +17,6 @@ class User extends ActiveQuery
 
     public function byLogin($login)
     {
-        return $this->andWhere(['login' => $login]);
+        return $this->andWhere(['username' => $login]);
     }
 }

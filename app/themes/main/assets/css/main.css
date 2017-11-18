@@ -126,12 +126,7 @@ nav.navbar .navbar-buttons .navbar-icon {
     border-top:8px solid #2569a3;
     box-shadow:0 0 20px rgba(0,0,0,0.9);
     color:#555;
-    display:none;
-    max-width:80%;
     padding:20px 60px;
-    position:relative;
-    text-align:left;
-    vertical-align:middle
 }
 
 .popup-form__row {
@@ -196,8 +191,18 @@ nav.navbar .navbar-buttons .navbar-icon {
     padding:10px 15px
 }
 
+ul.pathway li:not(:last-child):after {
+    content: '»';
+    color: #5ba8e9;
+    margin-left: 8px;
+}
+ul.pathway li {
+    display: inline-block;
+}
+
 .pathway {
-    padding:6px 0 0
+    margin: 6px 0;
+    padding: 0;
 }
 
 .soc-icon {
@@ -235,7 +240,6 @@ nav.navbar .navbar-buttons .navbar-icon {
 .content-wrapper {
     background:#F0F0F0 url(../img/pattern.png) repeat;
     box-shadow: 0 0 5px rgba(0,0,0,0.4);
-    float:left;
     padding:20px;
     width:100%
 }
