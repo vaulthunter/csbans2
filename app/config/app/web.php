@@ -12,8 +12,10 @@ $config = [
             'cookieValidationKey' => 'sadfsdfsdf',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'class' => \yii\web\User::class,
+            'identityClass' => 'csbans\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => ['/profile/auth/login']
         ],
         'errorHandler' => [
             'errorAction' => 'main/default/error',
@@ -25,8 +27,8 @@ $config = [
                 '' => 'main/default/index',
                 '<_m:[\w\-]+>' => '<_m>/default/index',
                 '<_m:[\w\-]+>/<_c:[\w\-]+>' => '<_m>/<_c>/index',
-                '<_m:[\w\-]+>/<_c:[\w\-]+>/<id:[\w\-]+>' => '<_m>/<_c>/view',
                 '<_m:[\w\-]+>/<_c:[\w\-]+>/<_a:[\w\-]+>' => '<_m>/<_c>/<_a>',
+                '<_m:[\w\-]+>/<_c:[\w\-]+>/<id:[\w\-]+>' => '<_m>/<_c>/view',
             ],
         ],
         'theme' => [
