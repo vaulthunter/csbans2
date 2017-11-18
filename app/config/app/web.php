@@ -48,7 +48,8 @@ return [
                     'class' => 'yii\twig\ViewRenderer',
                     'cachePath' => '@runtime/Twig/cache',
                     'uses' => [
-                        'yii\bootstrap'
+                        'yii\bootstrap',
+                        'csbans\widgets'
                     ],
                     'options' => [
                         'auto_reload' => true,
