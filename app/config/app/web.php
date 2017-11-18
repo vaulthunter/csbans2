@@ -6,7 +6,7 @@ $config = [
         'theme',
         'csbans\eventsDispatchers\ViewEventsDispatcher'
     ],
-    'layout' => 'main.twig',
+    'layout' => 'main.tpl',
     'components' => [
         'request' => [
             'cookieValidationKey' => 'sadfsdfsdf',
@@ -36,7 +36,7 @@ $config = [
             'defaultTheme' => 'default'
         ],
         'view' => [
-            'defaultExtension' => 'twig',
+            'defaultExtension' => 'tpl',
             'theme' => [
                 'pathMap' => [
                     '@app/modules' => '@app/views',
@@ -45,6 +45,7 @@ $config = [
             'renderers' => [
                 'tpl' => [
                     'class' => 'yii\smarty\ViewRenderer',
+                    'extensionClass' => 'csbans\components\SmartyExtension'
                 ],
                 'twig' => [
                     'class' => 'yii\twig\ViewRenderer',

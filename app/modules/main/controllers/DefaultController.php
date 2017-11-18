@@ -37,6 +37,6 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index.twig');
+        return $this->render('index.tpl');
     }
 }

@@ -16,6 +16,7 @@
         "yiisoft/yii2": "~2.0.5",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
+        "yiisoft/yii2-smarty": "~2.0.0",
         "yiisoft/yii2-twig": "~2.0.0"
     },
     "require-dev": {
