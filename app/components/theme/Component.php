@@ -3,8 +3,10 @@
 namespace app\components\theme;
 
 use Yii;
+use yii\base\BootstrapInterface;
 use yii\base\InvalidConfigException;
 use yii\helpers\FileHelper;
+use yii\web\Application;
 use yii\web\AssetBundle;
 use yii\web\View;
 
@@ -14,7 +16,7 @@ use yii\web\View;
  *
  * @property $current Theme
  */
-class Component extends \yii\base\Component implements \yii\base\BootstrapInterface
+class Component extends \yii\base\Component implements BootstrapInterface
 {
     const THEME_COOKIE_NAME = 'csb2_theme';
 
@@ -29,21 +31,24 @@ class Component extends \yii\base\Component implements \yii\base\BootstrapInterf
     private $_allThemes;
 
     /**
-     * @var \yii\web\Application
+     * @var Application
      */
     private $app;
 
     /**
-     * @param \yii\web\Application $app
+     * @inheritdoc
+     * @param Application $app
      */
     public function bootstrap($app)
     {
         $this->app = $app;
-        $app->on(\yii\web\Application::EVENT_BEFORE_ACTION, [$this, 'configureTheme']);
+        $app->on(Application::EVENT_BEFORE_ACTION, [$this, 'configureTheme']);
     }
 
     /**
+     * Get current theme
      * @return Theme
+     * @throws InvalidConfigException
      */
     public function getCurrent()
     {
@@ -54,6 +59,10 @@ class Component extends \yii\base\Component implements \yii\base\BootstrapInterf
         return $this->_current;
     }
 
+    /**
+     * Configure yii theme object
+     * @throws InvalidConfigException
+     */
     public function configureTheme()
     {
         $themePath = $this->getBasePath();
@@ -73,6 +82,10 @@ class Component extends \yii\base\Component implements \yii\base\BootstrapInterf
         unset($view);
     }
 
+    /**
+     * Get base path to all themes
+     * @return string
+     */
     public function getBasePath()
     {
         if(!$this->_basePath) {
@@ -81,6 +94,10 @@ class Component extends \yii\base\Component implements \yii\base\BootstrapInterf
         return $this->_basePath;
     }
 
+    /**
+     * Get current theme name
+     * @return string
+     */
     public function getName()
     {
         if(!$this->_name) {
@@ -92,6 +109,11 @@ class Component extends \yii\base\Component implements \yii\base\BootstrapInterf
         return $this->_name;
     }
 
+    /**
+     * Apply theme by name
+     * @param $name
+     * @throws InvalidConfigException
+     */
     public function applyTheme($name)
     {
         if(!$this->isThemeExists($name)) {
@@ -105,6 +127,11 @@ class Component extends \yii\base\Component implements \yii\base\BootstrapInterf
         ]));
     }
 
+    /**
+     * Get all themes list
+     * @return Theme[]
+     * @throws InvalidConfigException
+     */
     public function getThemes()
     {
         if($this->_allThemes === null) {
@@ -126,20 +153,38 @@ class Component extends \yii\base\Component implements \yii\base\BootstrapInterf
         return $this->_allThemes;
     }
 
+    /**
+     * Checks if theme exists by name
+     * @param string $name Name of theme whom we want to check
+     * @return bool false if theme not exists and true if theme exist
+     * @throws InvalidConfigException
+     */
     public function isThemeExists($name) {
         return in_array($name, $this->getThemes());
     }
 
+    /**
+     * Get base url to current theme
+     * @return string
+     */
     public function getBaseUrl()
     {
         return $this->_bundle->baseUrl;
     }
 
+    /**
+     * Get name of user selected theme
+     * @return string|null
+     */
     private function getUserTheme()
     {
         return Yii::$app->getRequest()->getCookies()->getValue(self::THEME_COOKIE_NAME);
     }
 
+    /**
+     * Write name of selected theme to client's storage
+     * @param string $name Name of theme whom must be an write to storage
+     */
     private function setUserTheme($name)
     {
         $this->app->getResponse()->getCookies()->add(new \yii\web\Cookie([
@@ -153,6 +198,11 @@ class Component extends \yii\base\Component implements \yii\base\BootstrapInterf
      * @var AssetBundle
      */
     private $_bundle;
+
+    /**
+     * @param View $view
+     * @throws InvalidConfigException
+     */
     private function setAssets(View $view)
     {
         $currentTheme = $this->getCurrent();
