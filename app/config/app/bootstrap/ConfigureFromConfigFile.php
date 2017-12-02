@@ -99,7 +99,7 @@ class ConfigureFromConfigFile implements BootstrapInterface
             'class' => Connection::class,
             'dsn' => $dsn,
             'username' => $config['dbUser'],
-            'password' => $config['dbPassword'],
+            'password' => ArrayHelper::getValue($config, 'dbPassword', ''),
             'tablePrefix' => ArrayHelper::getValue($config, 'dbPrefix', 'amx_'),
             'charset' => 'utf8mb4',
             'enableSchemaCache' => true
