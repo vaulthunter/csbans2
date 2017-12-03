@@ -18,6 +18,7 @@ class ConfigureFromConfigFile implements BootstrapInterface
      * Bootstrap method to be called during application bootstrap stage.
      * @param Application $app the application currently running
      * @throws ErrorException
+     * @throws \yii\base\ExitException
      */
     public function bootstrap($app)
     {
@@ -50,6 +51,7 @@ class ConfigureFromConfigFile implements BootstrapInterface
 
     /**
      * Configure a database connection from config file
+     * @throws InstallRequiredException
      * @throws InvalidConfigException
      */
     private function configureDb()
@@ -97,7 +99,7 @@ class ConfigureFromConfigFile implements BootstrapInterface
             'class' => Connection::class,
             'dsn' => $dsn,
             'username' => $config['dbUser'],
-            'password' => $config['dbPassword'],
+            'password' => ArrayHelper::getValue($config, 'dbPassword', ''),
             'tablePrefix' => ArrayHelper::getValue($config, 'dbPrefix', 'amx_'),
             'charset' => 'utf8mb4',
             'enableSchemaCache' => true
