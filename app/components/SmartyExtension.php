@@ -12,6 +12,12 @@ use yii\helpers\HtmlPurifier;
 
 class SmartyExtension extends Extension
 {
+    /**
+     * SmartyExtension constructor.
+     * @param $viewRenderer
+     * @param $smarty
+     * @throws \SmartyException
+     */
     public function __construct($viewRenderer, $smarty) {
         parent::__construct($viewRenderer, $smarty);
         $this->smarty->registerPlugin('function', 't', [$this, 'functionT']);
@@ -22,7 +28,7 @@ class SmartyExtension extends Extension
         $this->smarty->registerPlugin('modifier', 'format', [$this, 'modifierFormat']);
     }
 
-    public function functionBreadcrumbs($params, \Smarty_Internal_Template $template)
+    public function functionBreadcrumbs($params)
     {
         if(!isset($params['links'])) {
             trigger_error('Не переданы ссылки');
@@ -116,7 +122,7 @@ class SmartyExtension extends Extension
         $category = $params['category'];
         $message = str_replace(['[[', ']]'], ['{', '}'], $params['message']);
         unset($params['category'], $params['message']);
-        if($category !== 'app') {
+        if(strpos($category, '/') !== false) {
             $moduleClass = get_class(Yii::$app->controller->module);
             if(method_exists($moduleClass, 't')) {
                 return $moduleClass::t($category, $message, $params);

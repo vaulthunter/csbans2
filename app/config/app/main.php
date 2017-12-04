@@ -47,7 +47,7 @@ $config = [
                     'forceTranslation' => true,
                     'basePath' => '@csbans/messages'
                 ],
-                '*' => [
+                'layout' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'forceTranslation' => true,
                     'basePath' => '@csbans/messages'

@@ -23,21 +23,21 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></button>
             </div>
             <div class="navbar-collapse collapse opensans">
-                {Menu activeCssClass='active-url' options=['class' => 'nav navbar-nav', 'id' => 'navbar-nav'] items=[
+                {Menu activeCssClass='open' options=['class' => 'nav navbar-nav', 'id' => 'navbar-nav'] items=[
                     [
-                        'label' => 'ГЛАВНАЯ',
+                        'label' => {t category='layout' message='MAIN_MENU_LINK_HOME'},
                         'url' => ['/main/default/index']
                     ],
                     [
-                        'label' => 'БАНЛИСТ',
+                        'label' => {t category='layout' message='MAIN_MENU_LINK_BANLIST'},
                         'url' => ['/main/bans/index']
                     ],
                     [
-                        'label' => 'АДМИНЫ',
+                        'label' => {t category='layout' message='MAIN_MENU_LINK_ADMINS'},
                         'url' => ['/main/admins/index']
                     ],
                     [
-                        'label' => 'СЕРВЕРЫ',
+                        'label' => {t category='layout' message='MAIN_MENU_LINK_SERVERS'},
                         'url' => ['/main/servers/index']
                     ]
                 ]}
