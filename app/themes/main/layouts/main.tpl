@@ -25,19 +25,19 @@
             <div class="navbar-collapse collapse opensans">
                 {Menu activeCssClass='open' options=['class' => 'nav navbar-nav', 'id' => 'navbar-nav'] items=[
                     [
-                        'label' => {t category='layout' message='MAIN_MENU_LINK_HOME'},
+                        'label' => {t category='theme/layout' message='MAIN_MENU_LINK_HOME'},
                         'url' => ['/main/default/index']
                     ],
                     [
-                        'label' => {t category='layout' message='MAIN_MENU_LINK_BANLIST'},
+                        'label' => {t category='theme/layout' message='MAIN_MENU_LINK_BANLIST'},
                         'url' => ['/main/bans/index']
                     ],
                     [
-                        'label' => {t category='layout' message='MAIN_MENU_LINK_ADMINS'},
+                        'label' => {t category='theme/layout' message='MAIN_MENU_LINK_ADMINS'},
                         'url' => ['/main/admins/index']
                     ],
                     [
-                        'label' => {t category='layout' message='MAIN_MENU_LINK_SERVERS'},
+                        'label' => {t category='theme/layout' message='MAIN_MENU_LINK_SERVERS'},
                         'url' => ['/main/servers/index']
                     ]
                 ]}
@@ -47,12 +47,12 @@
                             type="button"
                             class="btn btn-csbans"
                             data-toggle="modal"
-                            data-target="#login-widget-modal">{t category='layout' message='LAYOUT_LOGIN_BUTTON'}</button>
+                            data-target="#login-widget-modal">{t category='theme/layout' message='LAYOUT_LOGIN_BUTTON'}</button>
                     </div>
                 {/if}
                 {if $app->user->isAdmin}
                     <div class="pull-right navbar-buttons btn-padding">
-                        <a href="#enter" class="btn btn-csbans">{t category='layout' message='LAYOUT_ADMIN_BUTTON'}</a>
+                        <a href="#enter" class="btn btn-csbans">{t category='theme/layout' message='LAYOUT_ADMIN_BUTTON'}</a>
                     </div>
                 {/if}
             </div>

@@ -119,15 +119,8 @@ class SmartyExtension extends Extension
         if(!isset($params['message'])) {
             trigger_error('t: Не передано сообщение');
         }
-        $category = $params['category'];
-        $message = str_replace(['[[', ']]'], ['{', '}'], $params['message']);
-        unset($params['category'], $params['message']);
-        if(strpos($category, '/') !== false) {
-            $moduleClass = get_class(Yii::$app->controller->module);
-            if(method_exists($moduleClass, 't')) {
-                return $moduleClass::t($category, $message, $params);
-            }
-        }
+        $category = ArrayHelper::remove($params, 'category');
+        $message = str_replace(['[[', ']]'], ['{', '}'], ArrayHelper::remove($params, 'message'));
         return \Yii::t($category, $message, $params);
     }
 }

@@ -42,12 +42,17 @@ $config = [
                     'forceTranslation' => true,
                     'basePath' => '@yii/messages'
                 ],
+                'theme*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'forceTranslation' => true,
+                    'basePath' => '@theme/messages'
+                ],
                 'app*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'forceTranslation' => true,
                     'basePath' => '@csbans/messages'
                 ],
-                'layout' => [
+                'user*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'forceTranslation' => true,
                     'basePath' => '@csbans/messages'

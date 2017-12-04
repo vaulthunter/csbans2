@@ -6,6 +6,7 @@ return [
     'LOGIN_WRONG_USER_OR_PASSWORD' => 'Неверные имя пользователя или пароль',
     'VIEW_PAGE_TITLE' => 'Войти',
     'VIEW_TITLE' => 'Форма входа',
+    'VIEW_BREADCRUMBS_LAST' => 'Форма входа',
     'VIEW_MENU_CAPTION' => 'Навигация',
     'VIEW_MENU_LINK_LOGIN' => 'Войти',
     'VIEW_MENU_LINK_RECOVERY' => 'Восстановить пароль',
